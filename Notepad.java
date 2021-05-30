@@ -18,23 +18,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class Notepad extends JFrame implements WindowListener {
-	// ¸â¹öº¯¼ö
+	// ë©¤ë²„ë³€ìˆ˜
 	public JTextArea ta = new JTextArea();
 	JFileChooser chooser = new JFileChooser();
 	JMenuBar mb = new JMenuBar();
 	String fileName = "";
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public Notepad() {
 		
 		this.setTitle("Notepad");
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
-		
 
-		// 2. ¸Ş´º»ı¼º
-		String[] smenu = { "ÆÄÀÏ" };
+		// 2. ë©”ë‰´ìƒì„±
+		String[] smenu = { "íŒŒì¼" };
 		JMenu[] mfile = new JMenu[10];
 		for (int i = 0; i < smenu.length; i++) {
 			mfile[i] = new JMenu(smenu[i]);
@@ -42,31 +40,31 @@ public class Notepad extends JFrame implements WindowListener {
 		}
 
 
-		String[] ScrItem = { "»õÆÄÀÏ", "¿­±â", "ÀúÀå", "´Ù¸¥ÀÌ¸§À¸·ÎÀúÀå", "Á¾·á" };
+		String[] ScrItem = { "ìƒˆíŒŒì¼", "ì—´ê¸°", "ì €ì¥", "ë‹¤ë¥¸ì´ë¦„ìœ¼ë¡œì €ì¥", "ì¢…ë£Œ" };
 		JMenuItem[] item = new JMenuItem[5];
 		for (int i = 0; i < ScrItem.length; i++) {
 			item[i] = new JMenuItem(ScrItem[i]);
-			// 1. ÀÌº¥Æ® ¼Ò½º: JMenuItem
-			// 2. ÀÌº¥Æ® Á¾·ù: ActionEvent
-			// 3. ¸®½º³Ê ±¸Çö: ActionListener - > µ¶¸³¸®½º³Ê
-			// 4. ¸®½º³Ê ¿¬°á
+			// 1. ì´ë²¤íŠ¸ ì†ŒìŠ¤: JMenuItem
+			// 2. ì´ë²¤íŠ¸ ì¢…ë¥˜: ActionEvent
+			// 3. ë¦¬ìŠ¤ë„ˆ êµ¬í˜„: ActionListener - > ë…ë¦½ë¦¬ìŠ¤ë„ˆ
+			// 4. ë¦¬ìŠ¤ë„ˆ ì—°ê²°
 			NoteActionListener nal = new NoteActionListener(this);
 			item[i].addActionListener(nal);
-			// 4. ¸Ş´º¹Ù ¼³Á¤
+			// 4. ë©”ë‰´ë°” ì„¤ì •
 			this.setJMenuBar(mb);
 			mfile[0].add(item[i]);
 
 		}
 		
-		// ÄÄÆ÷³ÍÆ® Ãß°¡
+		// ì»´í¬ë„ŒíŠ¸ ì¶”ê°€
 		this.add(ta);
 
 		this.setVisible(true);
 	}
-	/* »õÆÄÀÏ */
+	/* ìƒˆíŒŒì¼ */
 	public void newFile() {
-		if(!ta.getText().equals("")) { //ta¾È¿¡ ³»¿ëÀÌ ÀÖÀ¸¸é ÀúÀåÇÏµµ·Ï À¯µµ
-			int result = JOptionPane.showConfirmDialog(null, "ÀúÀåÇÏ½Ã°Ú½À´Ï±î?", "°æ°í", JOptionPane.YES_NO_OPTION);
+		if(!ta.getText().equals("")) { //taì•ˆì— ë‚´ìš©ì´ ìˆìœ¼ë©´ ì €ì¥í•˜ë„ë¡ ìœ ë„
+			int result = JOptionPane.showConfirmDialog(null, "ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²½ê³ ", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION ) {
 				saveFile(ta.getText());
 			} else {
@@ -77,14 +75,14 @@ public class Notepad extends JFrame implements WindowListener {
 		
 	}
 
-	/* ¿­±â */
+	/* ì—´ê¸° */
 	public void openFile() {
 
 		int ret = chooser.showOpenDialog(null);
 
 		if (ret != JFileChooser.APPROVE_OPTION) {
 
-			JOptionPane.showMessageDialog(null, "ÆÄÀÏÀ» ¼±ÅÃÇÏÁö ¾Ê¾Ò½À´Ï´Ù.", "°æ°í", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "íŒŒì¼ì„ ì„ íƒí•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.", "ê²½ê³ ", JOptionPane.WARNING_MESSAGE);
 			return;
 
 		} else {
@@ -95,7 +93,7 @@ public class Notepad extends JFrame implements WindowListener {
 				String c;
 				ta.setText("");
 				while ((c = in.readLine()) != null) {
-					ta.append(c + "\r\n"); //ÁÙ¹Ù²Ş
+					ta.append(c + "\r\n"); //ì¤„ë°”ê¿ˆ
 				}
 				in.close();
 			} catch (IOException e) {
@@ -107,8 +105,8 @@ public class Notepad extends JFrame implements WindowListener {
 		setTitle(chooser.getSelectedFile().getName());
 	}
 
-	/* ÆÄÀÏ ÀúÀå */
-	public void saveFile(String fn) {   //ÀúÀå
+	/* íŒŒì¼ ì €ì¥ */
+	public void saveFile(String fn) {   //ì €ì¥
 	      BufferedWriter out = null;
 	      File file = new File(fileName);
 	      try {
@@ -129,11 +127,11 @@ public class Notepad extends JFrame implements WindowListener {
 		
 	}
 	
-	/* Á¾·á½Ã ÀúÀåÇÏ°í Á¾·áÇÏµµ·Ï À¯µµ */
+	/* ì¢…ë£Œì‹œ ì €ì¥í•˜ê³  ì¢…ë£Œí•˜ë„ë¡ ìœ ë„ */
 	@Override
 	public void windowClosing(WindowEvent e) {
-		if(!ta.getText().equals("")) { //ta¾È¿¡ ³»¿ëÀÌ ÀÖÀ¸¸é ÀúÀåÇÏµµ·Ï À¯µµ
-			int result = JOptionPane.showConfirmDialog(null, "ÀúÀåÇÏ½Ã°Ú½À´Ï±î?", "°æ°í", JOptionPane.YES_NO_OPTION);
+		if(!ta.getText().equals("")) { //taì•ˆì— ë‚´ìš©ì´ ìˆìœ¼ë©´ ì €ì¥í•˜ë„ë¡ ìœ ë„
+			int result = JOptionPane.showConfirmDialog(null, "ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê²½ê³ ", JOptionPane.YES_NO_OPTION);
 			if(result == JOptionPane.YES_OPTION ) {
 				int ret = chooser.showSaveDialog(null);
 				if (ret == JFileChooser.APPROVE_OPTION) {
