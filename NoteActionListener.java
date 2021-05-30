@@ -15,10 +15,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class NoteActionListener implements ActionListener {
-	// ¸â¹öº¯¼ö
+	// ë©¤ë²„ë³€ìˆ˜
 	private Notepad frm;
 	String cmd;
-	// »ı¼ºÀÚ
+	// ìƒì„±ì
 	public NoteActionListener(Notepad n) {
 		this.frm = n;
 	}
@@ -28,27 +28,27 @@ public class NoteActionListener implements ActionListener {
 		cmd = e.getActionCommand();
 		switch (cmd) {
 
-		case "»õÆÄÀÏ":
+		case "ìƒˆíŒŒì¼":
 			frm.newFile();
 			break;
-		case "¿­±â":
+		case "ì—´ê¸°":
 			frm.openFile();
 			break;
-		case "ÀúÀå":
-			if(frm.fileName.equals("")) { //´Ù¸¥ÀÌ¸§À¸·Î ÀúÀå°ú ÀÏ¹İ ÀúÀåÀ» ±¸ºĞÇÏ±â À§ÇÔ, Ã³À½ ½ÇÇà½Ã ÀÏ¹İÀúÀå¹öÆ°À» ´­·¶À»¶§ chooser°¡ ¿­¸®µµ·Ï ÇÔ
+		case "ì €ì¥":
+			if(frm.fileName.equals("")) { //ë‹¤ë¥¸ì´ë¦„ìœ¼ë¡œ ì €ì¥ê³¼ ì¼ë°˜ ì €ì¥ì„ êµ¬ë¶„í•˜ê¸° ìœ„í•¨, ì²˜ìŒ ì‹¤í–‰ì‹œ ì¼ë°˜ì €ì¥ë²„íŠ¼ì„ ëˆŒë €ì„ë•Œ chooserê°€ ì—´ë¦¬ë„ë¡ í•¨
 	               int ret = frm.chooser.showSaveDialog(null);
 	               
 	               if(ret != frm.chooser.APPROVE_OPTION) {
-	                  JOptionPane.showMessageDialog(null, "ÆÄÀÏÀ» ¼±ÅÃÇÏÁö ¾Ê¾Ò½À´Ï´Ù!", "°æ°í", JOptionPane.WARNING_MESSAGE);
+	                  JOptionPane.showMessageDialog(null, "íŒŒì¼ì„ ì„ íƒí•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!", "ê²½ê³ ", JOptionPane.WARNING_MESSAGE);
 	                  return;
 	               }
 	               
 	               frm.fileName = frm.chooser.getSelectedFile().getPath();
 	            }
-	            frm.saveFile(frm.ta.getText()); //ÀúÀå
+	            frm.saveFile(frm.ta.getText()); //ì €ì¥
 	            
 	            break;
-		case "´Ù¸¥ÀÌ¸§À¸·ÎÀúÀå": //¹«Á¶°Ç chooser·Î ´ÙÀÌ¾ó·Î±× ¿­¾î¼­ ÀúÀå
+		case "ë‹¤ë¥¸ì´ë¦„ìœ¼ë¡œì €ì¥": //ë¬´ì¡°ê±´ chooserë¡œ ë‹¤ì´ì–¼ë¡œê·¸ ì—´ì–´ì„œ ì €ì¥
 				int ret = frm.chooser.showSaveDialog(null);
 				if (ret == JFileChooser.APPROVE_OPTION) {
 					frm.fileName = frm.chooser.getSelectedFile().getPath();
@@ -56,11 +56,10 @@ public class NoteActionListener implements ActionListener {
 				}
 				
 			break;
-		case "Á¾·á":
+		case "ì¢…ë£Œ":
 			frm.windowClosing(null);
 			break;
 		}
 
 	}
-
 }
